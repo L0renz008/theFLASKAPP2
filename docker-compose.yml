@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  flaskapp:
+    build: .
+    image: titanic-flask:latest
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      SECRET_KEY: obviouspassword
+      USE_POSTGRES: 'true'
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: db
+    
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: db
